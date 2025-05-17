@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect, url_for, request
 from forms import StudentForm
 from peewee import *
 from datetime import datetime
@@ -37,20 +37,34 @@ with app.app_context():
 # creating the first route for index page
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    student_count = Student.select().count()
+    return render_template('index.html',student_count=student_count)
 
 
 # creating the student route
 @app.route("/student", methods=['GET', 'POST'])
 def student_list():
-    return render_template('student.html')
+    students = Student.select()
+    return render_template('student.html',students=students)
 
 # add new student route
 
-@app.route('/student/new')
+@app.route('/student/new', methods=['GET', 'POST'])
 def add_student():
     # create a variable with StudentForm() value
     form = StudentForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        # when the submit button is pressed
+        fullname = form.fullname.data
+        tel = form.tel.data
+        email = form.email.data
+        student = Student.create(
+            fullname = fullname,
+            tel = tel,
+            email = email,
+        )
+        flash('Student added successfully', 'success')
+        return redirect(url_for('student_list'))    
     return render_template('student_new.html',form=form)
 
 

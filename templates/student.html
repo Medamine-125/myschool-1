@@ -20,27 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Otto Mark</td>
-        <td>0123456789</td>
-        <td>mark@gmail.com</td>
-        <td>30/02/2024</td>
+      {% for student in students %}
+       <tr>
+        <th scope="row">{{ student.id }}</th>
+        <td>{{ student.fullname }}</td>
+        <td>{{ student.tel }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.joining_date }}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Ahmed Thornton</td>
-        <td>0123456789</td>
-        <td>Thornton@gmail.com</td>
-        <td>12/01/2025</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>John Doe</td>
-        <td>0123456789</td>
-        <td>Doe@yahoo.fr</td>
-        <td>13/05/2023</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 <p class="text-muted">55 row found</p>
