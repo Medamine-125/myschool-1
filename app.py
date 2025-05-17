@@ -1,5 +1,5 @@
 from flask import Flask, render_template, flash, redirect, url_for, request
-from forms import StudentForm
+from forms import StudentForm, TeacherForm
 from peewee import *
 from datetime import datetime
 
@@ -85,6 +85,12 @@ def add_student():
 @app.route('/teachers')
 def teachers_list():
     return render_template('teachers.html')
+
+@app.route('/teachers/new')
+def add_teacher():
+    form = TeacherForm()
+    return render_template('teachers_new.html',form=form)
+
 
 
 
