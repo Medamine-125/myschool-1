@@ -22,11 +22,25 @@ class Student(db.Model):
     
     class Meta:
         database = db
+
+class Teachers(db.Model):
+    fullname = CharField()
+    tel = CharField()
+    email = CharField(unique=True)
+    joining_date = DateTimeField(default=datetime.now, formats='%Y-%m-%d %H:%M:%S')
+    experience = IntegerField()
+    subject = CharField()
+
+    class Meta:
+        database = db
+    
+
+
         
 
 def initialize_database():
     db.connect()
-    db.create_tables([Student])
+    db.create_tables([Student, Teachers], safe=True)
     db.close()
 
 
@@ -70,7 +84,7 @@ def add_student():
 
 @app.route('/teachers')
 def teachers_list():
-    return '<h1>Hello from teachers page</h1>'
+    return render_template('teachers.html')
 
 
 
