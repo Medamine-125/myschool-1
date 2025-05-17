@@ -68,5 +68,21 @@ def add_student():
     return render_template('student_new.html',form=form)
 
 
+@app.route('/teachers')
+def teachers_list():
+    return '<h1>Hello from teachers page</h1>'
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
