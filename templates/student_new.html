@@ -43,6 +43,17 @@
                 {% endif %}
             </div>
 
+            <div class="mb-3">
+                {{ form.joining_date.label(class="form-label") }}
+                {{ form.joining_date(class="form-control") }}
+                {% if form.joining_date.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.joining_date.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
             <!-- Full-Width Submit Button (Corrected 'd-grid') -->
             <div class="d-grid gap-2 mt-4">

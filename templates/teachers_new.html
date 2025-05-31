@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block title %} myschool - New Teacher Form {% endblock title %}
 {% block content %}
@@ -10,62 +11,27 @@
             <div class="mb-3">
                 {{ form.fullname.label(class="form-label") }}
                 {{ form.fullname(class="form-control") }}
-                {% if form.fullname.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.fullname.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
 
             <div class="mb-3">
                 {{ form.tel.label(class="form-label") }}
                 {{ form.tel(class="form-control") }}
-                {% if form.tel.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.tel.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
 
             <div class="mb-3">
                 {{ form.email.label(class="form-label") }}
                 {{ form.email(class="form-control") }}
-                {% if form.email.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
 
+            
             <div class="mb-3">
-                <div class="mb-3">
                 {{ form.experience.label(class="form-label") }}
                 {{ form.experience(class="form-control") }}
-                {% if form.experience.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.experience.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
 
             <div class="mb-3">
                 {{ form.subject.label(class="form-label") }}
                 {{ form.subject(class="form-control") }}
-                {% if form.subject.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.subject.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
 
             <!-- Full-Width Submit Button (Corrected 'd-grid') -->

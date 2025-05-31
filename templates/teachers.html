@@ -3,9 +3,8 @@
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center p-2">
-        <h5> Teachers list</h5>
-        <a href="{{ url_for('add_teacher') }}" class="btn btn-success" type="submit"><i class="bi bi-plus"></i>Add New Teacher</a>
- </a>
+        <h5>Teachers list</h5>
+        <a href="{{ url_for('add_teacher') }}" class="btn btn-success" type="submit"><i class="bi bi-plus"></i>Add New Teacher </a>
 </div>
 <hr class="border border-danger border-1 opacity-50">
 
@@ -21,13 +20,13 @@
       </tr>
     </thead>
     <tbody>
-      {% for teachers in teachers %}
+      {% for student in students %}
        <tr>
-        <th scope="row">{{ teachers.id }}</th>
-        <td>{{ teachers.fullname }}</td>
-        <td>{{ teachers.tel }}</td>
-        <td>{{ teachers.email }}</td>
-        <td>{{ teachers.joining_date }}</td>
+        <th scope="row">{{ student.id }}</th>
+        <td>{{ student.fullname }}</td>
+        <td>{{ student.tel }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.joining_date }}</td>
       </tr>
       {% endfor %}
     </tbody>

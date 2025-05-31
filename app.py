@@ -22,25 +22,25 @@ class Student(db.Model):
     
     class Meta:
         database = db
+        
 
-class Teachers(db.Model):
+class Teacher(db.Model):
     fullname = CharField()
     tel = CharField()
     email = CharField(unique=True)
-    joining_date = DateTimeField(default=datetime.now, formats='%Y-%m-%d %H:%M:%S')
     experience = IntegerField()
     subject = CharField()
-
+    joining_date = DateTimeField(default=datetime.now, formats='%Y-%m-%d %H:%M:%S')
+    
     class Meta:
         database = db
-    
 
 
-        
+
 
 def initialize_database():
     db.connect()
-    db.create_tables([Student, Teachers], safe=True)
+    db.create_tables([Student, Teacher])
     db.close()
 
 
@@ -82,15 +82,33 @@ def add_student():
     return render_template('student_new.html',form=form)
 
 
-@app.route('/teachers')
-def teachers_list():
-    return render_template('teachers.html')
 
-@app.route('/teachers/new')
+# Decorator 
+@app.route('/teacher')
+def teachers_list():
+    query = Teacher.select()
+    return render_template('teachers.html', teachers = query)
+
+
+@app.route('/teacher/new', methods=['POST','GET'])
 def add_teacher():
     form = TeacherForm()
-    return render_template('teachers_new.html',form=form)
-
+    if request.method == 'POST' and form.validate_on_submit():
+        
+        # 2) insert new teacher into database
+        
+        Teacher.create(
+            fullname = form.fullname.data,
+            tel = form.tel.data,
+            email = form.email.data,
+            experience = form.experience.data,
+            subject = form.subject.data,
+        )
+        
+        return redirect(url_for('teachers_list'))
+        
+        
+    return render_template('teachers_new.html', form=form)
 
 
 
