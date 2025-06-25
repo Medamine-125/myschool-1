@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Teacher Deletion{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Voulez-vous vraiment supprimer ce Professeur ? : {{ teacher.fullname }}
+  </h4>
+      Si oui, cliquez sur le bouton "Supprimer" ci-dessous.
+    Si non, cliquez sur le bouton "Retour" ci-dessous.
+  <hr>
+  <form action="{{ url_for('delete_teacher', prof_id=teacher.id) }}" method="post" style="display:inline;">
+    <button type="submit" class="btn btn-Danger">Supprimer</button>
+  </form>
+  <a href="{{ url_for('teachers_list') }}" class="btn btn-success">Retour</a>
+</div>
+{% endblock %}

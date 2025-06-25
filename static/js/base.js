@@ -1,0 +1,1 @@
+const view_student_btn = docement.getElementById("viewstudent");
